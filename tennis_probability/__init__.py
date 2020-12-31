@@ -13,5 +13,5 @@ try:
 except importlib_metadata.PackageNotFoundError:
     __version__ = ""
 
-from .tennis_probability import match
+from .tennis_probability import game, set
 from .errors import InvalidScore, InvalidProbability

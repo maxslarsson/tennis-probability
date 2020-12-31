@@ -2,22 +2,22 @@ from tennis_probability import *
 import pytest
 
 
-def test_match():
+def test_game():
     # Test valid inputs
-    assert round(match(0, 0, 0.51), 10) == 0.5249850076
-    assert round(match(2, 1, 0.78), 10) == 0.981006095
-    assert round(match(3, 2, 0.13), 10) == 0.1490010339
+    assert round(game(0, 0, 0.51), 10) == 0.5249850076
+    assert round(game(2, 1, 0.78), 10) == 0.981006095
+    assert round(game(3, 2, 0.13), 10) == 0.1490010339
 
     # Test invalid inputs
     with pytest.raises(InvalidScore):
-        match(10, 3, 0.2)
+        game(10, 3, 0.2)
     with pytest.raises(InvalidScore):
-        match(2, 812, 0.5)
+        game(2, 812, 0.5)
     with pytest.raises(InvalidScore):
-        match(3, 3, 0.51)
+        game(3, 3, 0.51)
 
     # Test invalid probabilities
     with pytest.raises(InvalidProbability):
-        match(2, 3, 1.0001)
+        game(2, 3, 1.0001)
     with pytest.raises(InvalidProbability):
-        match(1, 0, -1.001)
+        game(1, 0, -1.001)
