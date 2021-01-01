@@ -1,12 +1,16 @@
 import pytest
-from tennis_probability import game, InvalidInput, InvalidProbability
+from tennis_probability import game, InvalidInput, InvalidProbability, NegativeNumber
 
 
 def test_game():
+    assert game(0, 0, 0) == 0
+    assert game(0, 0, 0.50) == 0.5
+    assert game(0, 0, 1) == 1
+
     # Test valid inputs
-    assert round(game(0, 0, 0.51), 10) == 0.5249850076
-    assert round(game(2, 1, 0.78), 10) == 0.981006095
-    assert round(game(3, 2, 0.13), 10) == 0.1490010339
+    assert game(0, 0, 0.51) == 0.5249850075968013
+    assert game(2, 1, 0.78) == 0.9810060950060902
+    assert game(3, 2, 0.13) == 0.14900103385887828
 
     # Test invalid inputs
     with pytest.raises(InvalidInput):
@@ -15,7 +19,7 @@ def test_game():
         game(2, 812, 0.5)
     with pytest.raises(InvalidInput):
         game(3, 3, 0.51)
-    with pytest.raises(InvalidInput):
+    with pytest.raises(NegativeNumber):
         game(-1, 0, 0.9)
 
     # Test invalid probabilities

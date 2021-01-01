@@ -1,16 +1,16 @@
 import pytest
-from tennis_probability import set, InvalidInput, InvalidProbability
+from tennis_probability import set, InvalidInput, InvalidProbability, NegativeNumber
 
 
 def test_set():
-    # Test valid inputs
-    # Don't have any to compare with - yet!
     assert set(0, 0, 0) == 0
     assert set(0, 0, 0.50) == 0.5
     assert set(0, 0, 1) == 1
 
-    # assert round(set(2, 1, 0.78), 10) == 0.981006095
-    # assert round(set(3, 2, 0.13), 10) == 0.1490010339
+    # Test valid inputs
+    assert set(5, 3, 0.13) == 0.008146509339015371
+    assert set(2, 2, 0.37) == 0.024086243446167555
+    assert set(4, 1, 0.91) == 0.9999999999999992
 
     # Test invalid inputs
     with pytest.raises(InvalidInput):
@@ -19,7 +19,7 @@ def test_set():
         set(2, 812, 0.5)
     with pytest.raises(InvalidInput):
         set(5, 5, 0.51)
-    with pytest.raises(InvalidInput):
+    with pytest.raises(NegativeNumber):
         set(-1, 0, 0.9)
 
     # Test invalid probabilities
