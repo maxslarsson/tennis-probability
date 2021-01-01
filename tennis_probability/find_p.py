@@ -18,6 +18,10 @@ def find_p(probability: float, accuracy_threshold: float) -> float:
             meaning that if the p value is 0.51, it would get 0.510 and then an arbitrary amount of follow up numbers.
             After running this once with a threshold of 0.001 and a p value of 0.51, the function returned 0.51025390625.
 
+    Raises:
+        InvalidProbability:
+            When the probability is invalid.
+
     Returns:
         A p value that is withing `accuracy_threshold` of the real midpoint. If the search stops due to the threshold being reached,
         the mid is returned. In other words, the average of the high and low of the binary search is returned.
@@ -35,14 +39,14 @@ def find_p(probability: float, accuracy_threshold: float) -> float:
     mid = 0.5
 
     while high - low > accuracy_threshold:
-        # These two checks were removed, cause they take a while and the probability of it being exactly low, or exactly high,
-        # is extremely low. It is more efficient to just run binary search. This leads to instead of running the `match` function
-        # three times, it is now only run once.
+        # These two checks take a while and the probability of it being *exactly* low or high is extremely low.
+        # It *can* more efficient to just run binary search. The `match` function is run three times, but if these
+        # two checks are removed it would nly be run once per iteration.
 
-        # if probability == match(0, 0, low):
-        #     return low
-        # elif probability == match(0, 0, high):
-        #     return high
+        if probability == match(0, 0, low):
+            return low
+        elif probability == match(0, 0, high):
+            return high
 
         prob_mid = match(0, 0, mid)
 
@@ -59,7 +63,7 @@ def find_p(probability: float, accuracy_threshold: float) -> float:
         else:
             return mid
 
-        # Recalculate mid
+        # Recalculate mid at the end of the function
         mid = (high + low) / 2
 
     # If accuracy_threshold is reached return the middle point in between the high and the low
