@@ -1,7 +1,9 @@
 from .game import game
 from .check import check_games_won, check_probability
+from functools import lru_cache
 
 
+@lru_cache
 def set(
     games_won_a: int,
     games_won_b: int,

@@ -1,6 +1,8 @@
 from .check import check_score, check_probability
+from functools import lru_cache
 
 
+@lru_cache
 def game(score_a: int, score_b: int, p: float) -> float:
     """Recursively calculates the probability of player A winning at any state in a game.
 

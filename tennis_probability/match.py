@@ -1,8 +1,10 @@
 from .check import check_sets_won, check_probability, check_not_negative
 from math import ceil
 from .set import set
+from functools import lru_cache
 
 
+@lru_cache
 def match(
     sets_won_a: int, sets_won_b: int, p: float, best_out_of_n_sets: int = 5
 ) -> float:
