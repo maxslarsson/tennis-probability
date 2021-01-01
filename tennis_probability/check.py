@@ -1,14 +1,12 @@
 from .errors import (
     InvalidProbability,
-    InvalidScore,
-    InvalidGamesWon,
-    InvalidSetsWon,
+    InvalidInput,
     NegativeNumber,
 )
 
 
 def check_probability(p: float) -> object:
-    """Checks the validity of the probability of winning any given point.
+    """Checks if the probability is valid.
 
     Args:
         p:
@@ -25,7 +23,7 @@ def check_probability(p: float) -> object:
 
 
 def check_score(score_a: int, score_b: int):
-    """Verify the validity of the player scores.
+    """Checks that the player scores are valid.
 
     Args:
         score_a:
@@ -34,7 +32,7 @@ def check_score(score_a: int, score_b: int):
             The score for player B.
 
     Raises:
-        InvalidScore:
+        InvalidInput:
             When the score for the players is invalid - arguments `games_won_a` and `games_won_b`.
     """
     # If either score is negative, it is invalid
@@ -42,15 +40,15 @@ def check_score(score_a: int, score_b: int):
     # If either score is above 4, it is invalid
     # This means it is PAST the number 4, which returns 1 since a player won
     if score_a > 4 or score_b > 4:
-        raise InvalidScore
+        raise InvalidInput
     # A score of 3 for both players or above is invalid
     # This is since there is a "missing" node in the diagram. There is no state at (3,3).
     if score_a >= 3 and score_b >= 3:
-        raise InvalidScore
+        raise InvalidInput
 
 
 def check_games_won(games_a: int, games_b: int):
-    """Verify the validity of the number of games won.
+    """Checks that the number of games won is valid.
 
     Args:
         games_a:
@@ -59,7 +57,7 @@ def check_games_won(games_a: int, games_b: int):
             The score for player B.
 
     Raises:
-        InvalidGamesWon:
+        InvalidInput:
             When the score for the players is invalid - arguments `games_won_a` and `games_won_b`.
     """
     # If the number of games won for either player is negative, it is invalid
@@ -67,15 +65,15 @@ def check_games_won(games_a: int, games_b: int):
     # If the number of games won is above 6, it is also an invalid
     # This means it is PAST the number 6, which returns 1 since a player won
     if games_a > 6 or games_b > 6:
-        raise InvalidGamesWon
+        raise InvalidInput
     # Winning 5 or more games is invalid
     # This is since there is a "missing" node in the diagram. There is no state at (5,5).
     if games_a >= 5 and games_b >= 5:
-        raise InvalidGamesWon
+        raise InvalidInput
 
 
 def check_sets_won(sets_a: int, sets_b: int, best_out_of_n_sets: int):
-    """Verify the validity of the number of sets won.
+    """Checks that the number of sets won is valid.
 
     Args:
         sets_a:
@@ -86,7 +84,7 @@ def check_sets_won(sets_a: int, sets_b: int, best_out_of_n_sets: int):
             The number of sets played. This is passed in to make sure that the number of won sets is less than the number of sets played.
 
     Raises:
-        InvalidSetsWon:
+        InvalidInput:
             When the number of sets won is invalid - arguments `sets_a` and `sets_b`.
     """
     # If the number of games won for either player is negative, it is invalid
@@ -95,7 +93,7 @@ def check_sets_won(sets_a: int, sets_b: int, best_out_of_n_sets: int):
     # If the number of games won is above best_out_of_n_sets, since the "index" starts at zero, it is also an invalid
     # This means it is PAST the best_out_of_n_sets, which returns 1 since player A won
     if sets_a > best_out_of_n_sets or sets_b > best_out_of_n_sets:
-        raise InvalidSetsWon
+        raise InvalidInput
 
 
 def check_not_negative(*numbers: int):

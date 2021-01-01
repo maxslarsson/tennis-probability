@@ -1,8 +1,3 @@
-"""
-🎾 Recursively calculates the probability of winning a tennis match
-"""
-
-
 try:
     import importlib.metadata as importlib_metadata
 except ModuleNotFoundError:
@@ -13,7 +8,8 @@ try:
 except importlib_metadata.PackageNotFoundError:
     __version__ = ""
 
+from .find_p import find_p
 from .set import set
 from .game import game
 from .match import match
-from .errors import InvalidScore, InvalidProbability, InvalidGamesWon
+from .errors import InvalidProbability, InvalidInput

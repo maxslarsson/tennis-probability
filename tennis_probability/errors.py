@@ -1,16 +1,8 @@
-class InvalidScore(Exception):
-    pass
-
-
-class InvalidGamesWon(Exception):
+class InvalidInput(Exception):
     pass
 
 
 class InvalidProbability(Exception):
-    pass
-
-
-class InvalidSetsWon(Exception):
     pass
 
 

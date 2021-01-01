@@ -3,7 +3,9 @@ from math import ceil
 from .set import set
 
 
-def match(sets_won_a: int, sets_won_b: int, p: float, best_out_of_n_sets: int) -> float:
+def match(
+    sets_won_a: int, sets_won_b: int, p: float, best_out_of_n_sets: int = 5
+) -> float:
     """Recursively calculates the probability of player A winning at any state in a match.
 
     This function calls and uses both the `set` and `game` function.
@@ -16,7 +18,8 @@ def match(sets_won_a: int, sets_won_b: int, p: float, best_out_of_n_sets: int) -
         p:
             The independent probability of player A winning any given point.
         best_out_of_n_sets:
-            The number of sets played. Typically, this would be 5 sets for mens, and 3 sets for womens.
+            The number of sets played. Typically, this would be 5 sets for mens, and 3 sets for womens. The default is 5,
+            since that is the number of sets played for mens.
 
     Raises:
         NegativeNumber:

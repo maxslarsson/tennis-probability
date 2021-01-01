@@ -1,5 +1,5 @@
 import pytest
-from tennis_probability import game, InvalidScore, InvalidProbability
+from tennis_probability import game, InvalidInput, InvalidProbability
 
 
 def test_game():
@@ -9,13 +9,13 @@ def test_game():
     assert round(game(3, 2, 0.13), 10) == 0.1490010339
 
     # Test invalid inputs
-    with pytest.raises(InvalidScore):
+    with pytest.raises(InvalidInput):
         game(10, 3, 0.2)
-    with pytest.raises(InvalidScore):
+    with pytest.raises(InvalidInput):
         game(2, 812, 0.5)
-    with pytest.raises(InvalidScore):
+    with pytest.raises(InvalidInput):
         game(3, 3, 0.51)
-    with pytest.raises(InvalidScore):
+    with pytest.raises(InvalidInput):
         game(-1, 0, 0.9)
 
     # Test invalid probabilities
