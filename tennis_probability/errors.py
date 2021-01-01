@@ -8,3 +8,11 @@ class InvalidGamesWon(Exception):
 
 class InvalidProbability(Exception):
     pass
+
+
+class InvalidSetsWon(Exception):
+    pass
+
+
+class NegativeNumber(Exception):
+    pass

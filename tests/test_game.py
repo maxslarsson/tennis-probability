@@ -1,5 +1,5 @@
-from tennis_probability import *
 import pytest
+from tennis_probability import game, InvalidScore, InvalidProbability
 
 
 def test_game():
@@ -15,6 +15,8 @@ def test_game():
         game(2, 812, 0.5)
     with pytest.raises(InvalidScore):
         game(3, 3, 0.51)
+    with pytest.raises(InvalidScore):
+        game(-1, 0, 0.9)
 
     # Test invalid probabilities
     with pytest.raises(InvalidProbability):
