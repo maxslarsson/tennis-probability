@@ -13,6 +13,8 @@ python = "^3.12"
 pytest = "^7.4.3"
 black = "^23.11.0"
 mypy = "^1.7.1"
+sphinx = "^7.2.6"
+sphinx-automodapi = "^0.16.0"
 
 [build-system]
 requires = ["poetry-core"]
