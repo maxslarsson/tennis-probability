@@ -25,7 +25,7 @@ def set(
     Raises:
         NegativeNumber:
             When either score is negative.
-        InvalidGamesWon:
+        InvalidInput:
             When the number of games won for the players is invalid - arguments `games_won_a` and `games_won_b`.
         InvalidProbability:
             When the probability is invalid - the `p` argument.

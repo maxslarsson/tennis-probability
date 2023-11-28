@@ -23,7 +23,7 @@ def find_p(probability: float, accuracy_threshold: float) -> float:
             When the probability is invalid.
 
     Returns:
-        A p value that is withing `accuracy_threshold` of the real midpoint. If the search stops due to the threshold being reached,
+        A p value that is within `accuracy_threshold` of the real midpoint. If the search stops due to the threshold being reached,
         the mid is returned. In other words, the average of the high and low of the binary search is returned.
     """
     # Verifies that the probability is valid

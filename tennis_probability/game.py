@@ -17,7 +17,7 @@ def game(score_a: int, score_b: int, p: float) -> float:
     Raises:
         NegativeNumber:
             When either score is negative.
-        InvalidScore:
+        InvalidInput:
             When the score for the players is invalid - arguments `games_won_a` and `games_won_b`.
         InvalidProbability:
             When the probability is invalid - the `p_game` argument.

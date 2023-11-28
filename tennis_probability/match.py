@@ -26,7 +26,7 @@ def match(
     Raises:
         NegativeNumber:
             When either the score is negative or the num_of_sets_played.
-        InvalidSetsWon:
+        InvalidInput:
             When the score for the players is invalid - arguments `games_won_a` and `games_won_b`.
         InvalidProbability:
             When the probability is invalid - the `p_game` argument.
