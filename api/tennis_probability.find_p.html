@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>find_p &#8212; Tennis Probability 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=039e1c02" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="game" href="tennis_probability.game.html" />
+    <link rel="prev" title="Welcome to Tennis Probability’s documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="find-p">
+<h1>find_p<a class="headerlink" href="#find-p" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tennis_probability.find_p">
+<span class="sig-prename descclassname"><span class="pre">tennis_probability.</span></span><span class="sig-name descname"><span class="pre">find_p</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tennis_probability.find_p" title="Link to this definition">¶</a></dt>
+<dd><p>This functions finds the p value from the probability of winning a game.</p>
+<p>This p value is later used for all other functions to calculate the probability of winning. This is calculated using
+binary search. This assumes that the probability passed in is the probability of winning the entire match, with 0
+points played.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>probability</strong> – The probability of player A winning the entire match.</p></li>
+<li><p><strong>accuracy_threshold</strong> – The threshold of when to stop looking for the p value. Looks for the p value while <cite>high - low &gt; accuracy_threshold.</cite>
+For example, a threshold of 0.001 would make sure that three first three digits of the p value is correct,
+meaning that if the p value is 0.51, it would get 0.510 and then an arbitrary amount of follow up numbers.
+After running this once with a threshold of 0.001 and a p value of 0.51, the function returned 0.51025390625.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="tennis_probability.InvalidProbability.html#tennis_probability.InvalidProbability" title="tennis_probability.InvalidProbability"><strong>InvalidProbability</strong></a> – When the probability is invalid.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A p value that is within <cite>accuracy_threshold</cite> of the real midpoint. If the search stops due to the threshold being reached,
+the mid is returned. In other words, the average of the high and low of the binary search is returned.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Tennis Probability</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">find_p</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tennis_probability.find_p"><code class="docutils literal notranslate"><span class="pre">find_p()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tennis_probability.game.html">game</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tennis_probability.match.html">match</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tennis_probability.set.html">set</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tennis_probability.InvalidInput.html">InvalidInput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tennis_probability.InvalidProbability.html">InvalidProbability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tennis_probability.NegativeNumber.html">NegativeNumber</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Welcome to Tennis Probability’s documentation!</a></li>
+      <li>Next: <a href="tennis_probability.game.html" title="next chapter">game</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Max Larsson.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="../_sources/api/tennis_probability.find_p.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
