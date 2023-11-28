@@ -1,12 +1,24 @@
 name: "Sphinx: Render docs"
 
-on: push
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
@@ -15,6 +27,8 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.12'
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
     - name: Install and configure Poetry
       uses: snok/install-poetry@v1
       with:
@@ -35,14 +49,10 @@ jobs:
     - name: Build HTML
       working-directory: ./docs
       run: poetry run make html
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
       with:
-        name: html-docs
         path: docs/build/html/
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: docs/build/html
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
