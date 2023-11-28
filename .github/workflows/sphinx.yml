@@ -34,7 +34,7 @@ jobs:
       run: poetry install --no-interaction
     - name: Build HTML
       working-directory: ./docs
-      run: make html
+      run: poetry run make html
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
