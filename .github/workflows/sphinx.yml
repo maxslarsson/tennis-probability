@@ -8,9 +8,33 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v4
+    - name: Check out repository
+      uses: actions/checkout@v4
+    - name: Set up python
+      id: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+    - name: Install project
+      run: poetry install --no-interaction
     - name: Build HTML
-      uses: ammaraskar/sphinx-action@master
+      working-directory: ./docs
+      run: make html
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
