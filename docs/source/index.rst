@@ -6,7 +6,7 @@
 Welcome to Tennis Probability's documentation!
 ==============================================
 
-This package recursively calculates the probability of winning a tennis match.
+This package recursively calculates the probability of winning a tennis match, game, or set.
 
 .. automodapi:: tennis_probability
    :no-inheritance-diagram:
